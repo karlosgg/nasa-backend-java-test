@@ -9,14 +9,14 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-class PruebaDtoTest {
+class DataDtoTest {
 
-    private PruebaDto dto;
+    private DataDto dto;
     private Date date = new Date();
 
     @BeforeEach
     void init(){
-        dto = new PruebaDto(0L, "href", "center","title","nasa_id",date);
+        dto = new DataDto(0L, "href", "center","title","nasa_id",date);
     }
 
     @Test

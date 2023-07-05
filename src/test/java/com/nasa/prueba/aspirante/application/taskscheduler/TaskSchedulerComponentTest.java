@@ -1,7 +1,9 @@
 package com.nasa.prueba.aspirante.application.taskscheduler;
 
+import com.nasa.prueba.aspirante.aplicacion.dataservice.DataService;
 import com.nasa.prueba.aspirante.aplicacion.taskscheduler.TaskSchedulerComponent;
 import com.nasa.prueba.aspirante.dominio.dao.clientrest.*;
+import com.nasa.prueba.aspirante.dominio.dto.DataDto;
 import com.nasa.prueba.aspirante.infraestructura.clientrest.NasaClient;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -11,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,6 +26,9 @@ class TaskSchedulerComponentTest {
     @Mock
     private NasaClient client;
 
+    @Mock
+    private DataService dataService;
+
     @InjectMocks
     @Spy
     private TaskSchedulerComponent component;
@@ -30,6 +36,7 @@ class TaskSchedulerComponentTest {
     @Test
     void whenSchedule(){
         //given
+        var dto = new DataDto(0L,"a","b","c","d", new Date());
         var arrayList = new ArrayList<Item>();
         var data = new HashMap<Object, Object>();
         data.put("title", "a");
@@ -44,6 +51,7 @@ class TaskSchedulerComponentTest {
         );
         //when
         when(client.search(anyString())).thenReturn(ResponseEntity.ok(root));
+        when(dataService.saveData(any())).thenReturn(List.of(dto));
         component.scheduledProcess();
         //then
         verify(component).scheduledProcess();

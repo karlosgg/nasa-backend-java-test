@@ -14,8 +14,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Prueba")
-public class PruebaEntity {
+@Table(name = "prueba" , schema = "public")
+public class DataEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +25,7 @@ public class PruebaEntity {
     private String title;
     @Column(name = "nasa_id")
     private String nasaId;
-    @CreatedDate
-    @Column(name = "date_added", nullable = false, updatable = false)
-    private Date dateAdded;
+    @Column(name = "created_date", updatable = false)
+    private Date createdDate;
 
 }

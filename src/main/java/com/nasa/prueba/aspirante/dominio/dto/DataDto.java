@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Getter
 @AllArgsConstructor
-public class PruebaDto {
+public class DataDto {
     private Long id;
     private String href;
     private String center;

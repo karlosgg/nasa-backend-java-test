@@ -9,14 +9,14 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-class PruebaEntityTest {
+class DataEntityTest {
 
-    private PruebaEntity entity;
+    private DataEntity entity;
     private Date date = new Date();
 
     @BeforeEach
     void init(){
-        entity = new PruebaEntity(0L, "href", "center","title","nasa_id",date);
+        entity = new DataEntity(0L, "href", "center","title","nasa_id",date);
     }
 
     @Test
@@ -27,24 +27,24 @@ class PruebaEntityTest {
         assertEquals("center", ent.getCenter());
         assertEquals("title", ent.getTitle());
         assertEquals("nasa_id", ent.getNasaId());
-        assertEquals(date, ent.getDateAdded());
+        assertEquals(date, ent.getCreatedDate());
     }
 
     @Test
     void whenIConstructWithNoArgs(){
-        var ent = new PruebaEntity();
+        var ent = new DataEntity();
         ent.setId(0L);
         ent.setHref("href");
         ent.setCenter("center");
         ent.setTitle("title");
         ent.setNasaId("nasa_id");
-        ent.setDateAdded(date);
+        ent.setCreatedDate(date);
 
         assertEquals(0L, ent.getId());
         assertEquals("href", ent.getHref());
         assertEquals("center", ent.getCenter());
         assertEquals("title", ent.getTitle());
         assertEquals("nasa_id", ent.getNasaId());
-        assertEquals(date, ent.getDateAdded());
+        assertEquals(date, ent.getCreatedDate());
     }
 }
