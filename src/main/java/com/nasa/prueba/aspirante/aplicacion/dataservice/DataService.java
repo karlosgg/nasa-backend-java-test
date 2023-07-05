@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface DataService {
     List<DataDto> saveData(ArrayList<DataEntity> collection);
+    List<DataDto> getData();
 }

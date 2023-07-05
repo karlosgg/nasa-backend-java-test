@@ -4,6 +4,7 @@ import com.nasa.prueba.aspirante.dominio.dto.DataDto;
 import com.nasa.prueba.aspirante.dominio.entities.DataEntity;
 import com.nasa.prueba.aspirante.infraestructura.repository.DataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,6 +21,12 @@ public class DataServiceImpl implements DataService{
     public List<DataDto> saveData(ArrayList<DataEntity> collection) {
         var saved = repository.saveAll(collection);
         return saved.stream().map(this::castToDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DataDto> getData() {
+        var result = repository.findAll(Sort.by(Sort.Order.desc("id")));
+        return result.stream().map(this::castToDto).collect(Collectors.toList());
     }
 
     private DataDto castToDto(DataEntity x){

@@ -10,12 +10,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.Mockito.when;
 
@@ -50,5 +52,14 @@ class DataServiceTest {
         //then
         var saved = dataService.saveData(arrayList);
         assertEquals(result, saved.get(0).getId());
+    }
+
+    @Test
+    void whenIGetAllData(){
+        //when
+        when(repository.findAll(Sort.by(Sort.Order.desc("id")))).thenReturn(List.of(entity));
+        //then
+        var result = dataService.getData();
+        assertEquals(1, result.size());
     }
 }
