@@ -1,0 +1,22 @@
+server:
+  servlet:
+    context-path: /app
+  port: 9090
+
+clients:
+  resource:
+    name: ResourceService
+    domain: https://images-api.nasa.gov
+    endpoint: search
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/magneto_db
+    username: root
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+  show-sql: true
